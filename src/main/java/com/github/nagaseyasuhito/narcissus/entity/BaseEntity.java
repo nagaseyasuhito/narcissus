@@ -2,6 +2,7 @@ package com.github.nagaseyasuhito.narcissus.entity;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +11,6 @@ import javax.persistence.MappedSuperclass;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
-import com.google.common.collect.Lists;
 
 @SuppressWarnings("serial")
 @MappedSuperclass
@@ -50,7 +49,7 @@ public abstract class BaseEntity<T extends Serializable> implements Serializable
 	@Override
 	public String toString() {
 		Class<?> clazz = this.getClass();
-		List<String> excludeFieldNames = Lists.newArrayList();
+		List<String> excludeFieldNames = new ArrayList<String>();
 		do {
 			for (Field field : clazz.getDeclaredFields()) {
 				Class<?> type = field.getType();
