@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.nagaseyasuhito</groupId>
+	<artifactId>narcissus</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>narcissus</name>
+	<url>http://github.com/nagaseyasuhito/narcissus</url>
+	<description>narcissus is fatsia DAO integration.</description>
+	<organization>
+		<name>nagaseyasuhito Architekt works.</name>
+	</organization>
+
+	<scm>
+		<url>http://github.com/nagaseyasuhito/narcissus</url>
+		<connection>scm:git:https://github.com/nagaseyasuhito/narcissus.git</connection>
+		<developerConnection>scm:git:https://github.com/nagaseyasuhito/narcissus.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>mavenrepository.googlecode.com</id>
+			<url>scm:svn:https://mavenrepository.googlecode.com/svn/trunk</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.2</version>
+				<configuration>
+					<tagNameFormat>@{project.version}</tagNameFormat>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-scm</artifactId>
+						<version>2.2</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-svnexe</artifactId>
+						<version>1.5</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.nagaseyasuhito</groupId>
+			<artifactId>fatsia</artifactId>
+			<version>1.1.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
