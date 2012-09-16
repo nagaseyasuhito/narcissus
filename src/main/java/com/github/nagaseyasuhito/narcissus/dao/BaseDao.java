@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.github.nagaseyasuhito.fatsia.Criterias;
-import com.github.nagaseyasuhito.fatsia.criteria.Criteria;
+import com.github.nagaseyasuhito.fatsia.criteria.EntityCriteria;
 import com.github.nagaseyasuhito.narcissus.entity.BaseEntity;
 
 public abstract class BaseDao<S extends Serializable, T extends BaseEntity<S>> {
@@ -16,20 +16,20 @@ public abstract class BaseDao<S extends Serializable, T extends BaseEntity<S>> {
 	@Inject
 	private EntityManager entityManager;
 
-	public long countByCriteria(Criteria<T> criteria) {
-		return Criterias.count(criteria, this.getEntityClass(), this.entityManager);
+	public long countByCriteria(EntityCriteria<T> criteria) {
+		return Criterias.count(this.entityManager, criteria);
 	}
 
-	public T findByCriteria(Criteria<T> criteria) {
-		return Criterias.find(this.entityManager, this.getEntityClass(), criteria);
+	public T findByCriteria(EntityCriteria<T> criteria) {
+		return Criterias.find(this.entityManager, criteria);
 	}
 
-	public List<T> findByCriteria(Criteria<T> criteria, SortedMap<String, Boolean> orders) {
+	public List<T> findByCriteria(EntityCriteria<T> criteria, SortedMap<String, Boolean> orders) {
 		return this.findByCriteria(criteria, orders, -1, -1);
 	}
 
-	public List<T> findByCriteria(Criteria<T> criteria, SortedMap<String, Boolean> orders, int firstResult, int maxResults) {
-		return Criterias.find(this.entityManager, this.getEntityClass(), criteria, orders, firstResult, maxResults);
+	public List<T> findByCriteria(EntityCriteria<T> criteria, SortedMap<String, Boolean> orders, int firstResult, int maxResults) {
+		return Criterias.find(this.entityManager, criteria, orders, firstResult, maxResults);
 	}
 
 	public T findById(S id) {
