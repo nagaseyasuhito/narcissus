@@ -14,7 +14,7 @@ import com.github.nagaseyasuhito.narcissus.entity.BaseEntity;
 public abstract class BaseDao<S extends Serializable, T extends BaseEntity<S>> {
 
 	@Inject
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	public long countByCriteria(EntityCriteria<T> criteria) {
 		return Criterias.count(this.entityManager, criteria);
@@ -25,7 +25,7 @@ public abstract class BaseDao<S extends Serializable, T extends BaseEntity<S>> {
 	}
 
 	public List<T> findByCriteria(EntityCriteria<T> criteria, SortedMap<String, Boolean> orders) {
-		return this.findByCriteria(criteria, orders, -1, -1);
+		return Criterias.find(this.entityManager, criteria, orders);
 	}
 
 	public List<T> findByCriteria(EntityCriteria<T> criteria, SortedMap<String, Boolean> orders, int firstResult, int maxResults) {
