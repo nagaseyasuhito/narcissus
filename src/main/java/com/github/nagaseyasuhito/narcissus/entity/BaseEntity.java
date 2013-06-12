@@ -40,7 +40,7 @@ public abstract class BaseEntity<T extends Serializable> implements Serializable
 
 		BaseEntity<?> entity = (BaseEntity<?>) object;
 		if (this.getId() == null || entity.getId() == null) {
-			return this.equals(entity);
+			return super.equals(entity);
 		}
 
 		return this.getId().equals(entity.getId());
